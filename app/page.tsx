@@ -46,14 +46,12 @@ export default function Home() {
       >
         HAKKIMIZDA
       </a>
-
       <a
-        href="#hizmetler"
-        className="hover:text-lime-400 transition"
-      >
-        HİZMETLER
-      </a>
-
+  href="/blog"
+  className="hover:text-lime-400 transition"
+>
+  BLOG
+</a>
       <a
         href="https://instagram.com/mekanitro_chiptuning"
         target="_blank"
@@ -70,6 +68,7 @@ export default function Home() {
       </a>
 
     </nav>
+    
 
 {/* BUTTON */}
 <button
@@ -146,25 +145,50 @@ className="absolute inset-0 bg-cover bg-center animate-[slowZoom_12s_ease-in-out
               className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10"
             >
 
-              {[
-                "STAGE 1-2-3 PERFORMANCE YAZILIMLARI",
-                "DSG OPTİMİZASYONU YAZILIMI",
-                "DPF / EGR ÇÖZÜMLERİ",
-                "POPS & BANGS",
-                "ADBLUE ÇÖZÜMLERİ",
-                "GPF ÇÖZÜMLERİ",
-                "GİZLİ ÖZELLİK",
-                "7/24 Acil Mobil Destek",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-2xl py-5 px-4 text-center hover:border-lime-400 hover:bg-lime-400/10 transition duration-300 hover:-translate-y-1"
-                >
-                  <p className="font-black text-xs md:text-sm tracking-wide">
-                    {item}
-                  </p>
-                </div>
-              ))}
+{[
+  {
+    title: "STAGE 1-2-3 PERFORMANCE YAZILIMLARI",
+    link: "/stage-yazilim",
+  },
+  {
+    title: "DSG OPTİMİZASYONU YAZILIMI",
+    link: "/dsg-optimizasyonu",
+  },
+  {
+    title: "DPF / EGR ÇÖZÜMLERİ",
+    link: "/dpf-egr-cozumu",
+  },
+  {
+    title: "ADBLUE ÇÖZÜMLERİ",
+    link: "/adblue-cozumu",
+  },
+  {
+    title: "GPF ÇÖZÜMLERİ",
+    link: "/gpf-cozumu",
+  },
+  {
+    title: "GİZLİ ÖZELLİK",
+    link: "/gizli-ozellik",
+  },
+  {
+    title: "SERVİS HİZMETİMİZ",
+    link: "/servis-hizmetleri",
+  },
+  {
+    title: "7/24 Acil Mobil Destek",
+    link: "/mobil-destek",
+  },
+].map((item) => (
+  <a
+    key={item.title}
+    href={item.link}
+    className="bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-2xl py-5 px-4 text-center hover:border-lime-400 hover:bg-lime-400/10 transition duration-300 hover:-translate-y-1"
+  >
+    <p className="font-black text-xs md:text-sm tracking-wide">
+      {item.title}
+    </p>
+  </a>
+))}
 
             </div>
 
