@@ -6,6 +6,7 @@ import { useState } from "react"
 export default function Navbar() {
 
   const [showAppointment, setShowAppointment] = useState(false)
+  const [showAnalysis, setShowAnalysis] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   return (
@@ -74,12 +75,23 @@ export default function Navbar() {
             </nav>
 
             {/* BUTTON */}
-            <button
-              onClick={() => setShowAppointment(true)}
-              className="hidden md:flex bg-lime-400 text-black px-8 py-4 rounded-full font-black hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_35px_rgba(163,230,53,0.45)]"
-            >
-              RANDEVU AL
-            </button>
+            <div className="hidden md:flex flex-col items-center ml-2 translate-y-8">
+
+<button
+  onClick={() => setShowAppointment(true)}
+  className="bg-lime-400 text-black w-[175px] h-[54px] rounded-full font-black text-[15px] hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_35px_rgba(163,230,53,0.45)]"
+>
+  RANDEVU AL
+</button>
+
+<button
+  onClick={() => setShowAnalysis(true)}
+className="mt-3 bg-lime-400 text-black w-[170px] h-[50px] rounded-full uppercase tracking-[0.8px] font-extrabold text-[14px] hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_25px_rgba(163,230,53,0.30)]"
+>
+  ARACINI SOR
+</button>
+
+</div>
 
             {/* MOBILE MENU BUTTON */}
             <button
@@ -172,7 +184,76 @@ export default function Navbar() {
         </div>
 
       </div>
+{/* ANALYSIS PANEL */}
+<div
+  className={`fixed top-0 right-0 h-screen w-full md:w-[500px] bg-[#0a0a0a] z-[999] border-l border-white/10 transition-all duration-500 ${
+    showAnalysis ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  <div className="flex items-center justify-between p-6 border-b border-white/10">
+    <div>
+      <p className="text-lime-400 uppercase tracking-[4px] text-sm font-black">
+        ARACINI SOR
+      </p>
 
+      <h2 className="text-3xl font-black uppercase mt-2">
+        Ücretsiz Analiz
+      </h2>
+    </div>
+
+    <button
+      onClick={() => setShowAnalysis(false)}
+      className="text-3xl text-white/70 hover:text-lime-400 transition"
+    >
+      ×
+    </button>
+  </div>
+
+  <div className="p-6 space-y-5 overflow-y-auto h-[calc(100vh-120px)]">
+    <input id="analysisName" type="text" placeholder="Ad Soyad" className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition" />
+
+    <input id="analysisPhone" type="text" placeholder="Telefon Numaranız" className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition" />
+
+    <input id="analysisBrand" type="text" placeholder="Araç Markası" className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition" />
+
+    <input id="analysisModel" type="text" placeholder="Araç Modeli" className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition" />
+
+    <input id="analysisEngine" type="text" placeholder="Motor / Yıl Bilgisi" className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition" />
+
+    <textarea id="analysisMessage" placeholder="İstenen işlem: Stage 1, DSG, DPF/EGR, AdBlue, gizli özellik..." rows={3} className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition resize-none" />
+
+    <button
+      onClick={() => {
+        const name = (document.getElementById("analysisName") as HTMLInputElement)?.value || ""
+        const phone = (document.getElementById("analysisPhone") as HTMLInputElement)?.value || ""
+        const brand = (document.getElementById("analysisBrand") as HTMLInputElement)?.value || ""
+        const model = (document.getElementById("analysisModel") as HTMLInputElement)?.value || ""
+        const engine = (document.getElementById("analysisEngine") as HTMLInputElement)?.value || ""
+        const message = (document.getElementById("analysisMessage") as HTMLTextAreaElement)?.value || ""
+
+        const whatsappMessage = `Merhaba, ücretsiz araç analizi almak istiyorum.
+
+Ad Soyad: ${name}
+Telefon: ${phone}
+
+Araç Markası: ${brand}
+Araç Modeli: ${model}
+Motor / Yıl: ${engine}
+
+İstenen İşlem:
+${message}`
+
+        window.open(
+          `https://wa.me/905301331204?text=${encodeURIComponent(whatsappMessage)}`,
+          "_blank"
+        )
+      }}
+      className="block w-full bg-lime-400 hover:bg-lime-300 text-black text-center font-black py-5 rounded-2xl transition duration-300 shadow-[0_0_30px_rgba(163,230,53,0.35)]"
+    >
+      WhatsApp Üzerinden Gönder
+    </button>
+  </div>
+</div>
       {/* MOBILE MENU */}
       <div
         className={`fixed top-0 right-0 h-screen w-full bg-black z-[999] transition-all duration-500 ${
@@ -261,9 +342,10 @@ export default function Navbar() {
         onClick={() => {
           setShowAppointment(false)
           setShowMobileMenu(false)
+          setShowAnalysis(false)
         }}
         className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[998] transition duration-500 ${
-          showAppointment || showMobileMenu
+          showAppointment || showMobileMenu || showAnalysis
             ? "opacity-100 visible"
             : "opacity-0 invisible"
         }`}

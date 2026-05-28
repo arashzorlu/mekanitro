@@ -5,6 +5,7 @@ import { useState } from "react"
 
 export default function Home() {
   const [showAppointment, setShowAppointment] = useState(false)
+  const [showAnalysis, setShowAnalysis] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
@@ -71,12 +72,23 @@ export default function Home() {
     
 
 {/* BUTTON */}
-<button
-  onClick={() => setShowAppointment(true)}
-  className="hidden md:flex bg-lime-400 text-black px-8 py-4 rounded-full font-black hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_35px_rgba(163,230,53,0.45)]"
->
-  RANDEVU AL
-</button>
+<div className="hidden md:flex flex-col items-center ml-2 translate-y-8">
+
+  <button
+    onClick={() => setShowAppointment(true)}
+    className="bg-lime-400 text-black w-[175px] h-[54px] rounded-full font-black text-[15px] hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_35px_rgba(163,230,53,0.45)]"
+  >
+    RANDEVU AL
+  </button>
+
+  <button
+    onClick={() => setShowAnalysis(true)}
+    className="mt-3 bg-lime-400 text-black w-[170px] h-[50px] rounded-full uppercase tracking-[0.8px] font-extrabold text-[14px] hover:scale-105 hover:bg-lime-300 transition duration-300 shadow-[0_0_25px_rgba(163,230,53,0.30)]"
+  >
+    ARACINI SOR
+  </button>
+
+</div>
 {/* MOBILE MENU BUTTON */}
 <button
   onClick={() => setShowMobileMenu(true)}
@@ -147,45 +159,69 @@ className="absolute inset-0 bg-cover bg-center animate-[slowZoom_12s_ease-in-out
 
 {[
   {
-    title: "STAGE 1-2-3 PERFORMANCE YAZILIMLARI",
+    title: "STAGE 1-2-3",
+    desc: "Güç, tork ve daha yüksek sürüş keyfi",
+    icon: "⚡",
     link: "/stage-yazilim",
   },
   {
-    title: "DSG OPTİMİZASYONU YAZILIMI",
+    title: "DSG OPTİMİZASYONU",
+    desc: "Hızlı vites geçişleri ve launch control",
+    icon: "⚙️",
     link: "/dsg-optimizasyonu",
   },
   {
-    title: "DPF / EGR ÇÖZÜMLERİ",
+    title: "DPF / EGR",
+    desc: "Tıkanıklık ve arıza kaynaklı performans kaybı çözümleri",
+    icon: "💨",
     link: "/dpf-egr-cozumu",
   },
   {
-    title: "ADBLUE ÇÖZÜMLERİ",
+    title: "ADBLUE",
+    desc: "NOx ve SCR sistem kaynaklı problemler",
+    icon: "🧪",
     link: "/adblue-cozumu",
   },
   {
-    title: "GPF ÇÖZÜMLERİ",
+    title: "GPF ÇÖZÜMÜ",
+    desc: "Benzinli partikül filtresi sorunları",
+    icon: "🔥",
     link: "/gpf-cozumu",
   },
   {
     title: "GİZLİ ÖZELLİK",
+    desc: "Kodlama ve premium özellik aktivasyonları",
+    icon: "🔓",
     link: "/gizli-ozellik",
   },
   {
-    title: "SERVİS HİZMETİMİZ",
+    title: "SERVİS",
+    desc: "Arıza tespiti, bakım ve teknik destek",
+    icon: "🛠️",
     link: "/servis-hizmetleri",
   },
   {
-    title: "7/24 Acil Mobil Destek",
+    title: "7/24 DESTEK",
+    desc: "Mobil servis ve yerinde müdahale",
+    icon: "📍",
     link: "/mobil-destek",
   },
 ].map((item) => (
   <a
     key={item.title}
     href={item.link}
-    className="bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-2xl py-5 px-4 text-center hover:border-lime-400 hover:bg-lime-400/10 transition duration-300 hover:-translate-y-1"
+    className="group bg-white/[0.04] border border-white/10 backdrop-blur-md rounded-3xl p-5 hover:border-lime-400 hover:bg-lime-400/10 transition duration-300 hover:-translate-y-2 min-h-[180px] flex flex-col"
   >
-    <p className="font-black text-xs md:text-sm tracking-wide">
+    <div className="text-4xl mb-4 transition duration-300 group-hover:scale-110">
+      {item.icon}
+    </div>
+
+    <h3 className="font-black uppercase text-[13px] leading-tight">
       {item.title}
+    </h3>
+
+    <p className="text-white/60 text-xs leading-relaxed mt-3">
+      {item.desc}
     </p>
   </a>
 ))}
@@ -877,12 +913,96 @@ className="absolute inset-0 bg-cover bg-center animate-[slowZoom_12s_ease-in-out
   </div>
 
 </div>
+{/* ANALYSIS PANEL */}
+<div
+  className={`fixed top-0 right-0 h-screen w-full md:w-[500px] bg-[#0a0a0a] z-[999] border-l border-white/10 transition-all duration-500 ${
+    showAnalysis
+      ? "translate-x-0"
+      : "translate-x-full"
+  }`}
+>
 
+  <div className="flex items-center justify-between p-6 border-b border-white/10">
+
+    <div>
+
+      <p className="text-lime-400 uppercase tracking-[4px] text-sm font-black">
+        ARACINI SOR
+      </p>
+
+      <h2 className="text-3xl font-black uppercase mt-2">
+        Ücretsiz Analiz
+      </h2>
+
+    </div>
+
+    <button
+      onClick={() => setShowAnalysis(false)}
+      className="text-3xl text-white/70 hover:text-lime-400 transition"
+    >
+      ×
+    </button>
+
+  </div>
+
+  <div className="p-6 space-y-5 overflow-y-auto h-[calc(100vh-120px)]">
+
+    <input
+      type="text"
+      placeholder="Ad Soyad"
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition"
+    />
+
+    <input
+      type="text"
+      placeholder="Telefon Numaranız"
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition"
+    />
+
+    <input
+      type="text"
+      placeholder="Araç Markası"
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition"
+    />
+
+    <input
+      type="text"
+      placeholder="Araç Modeli"
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition"
+    />
+
+    <input
+      type="text"
+      placeholder="Motor / Yıl Bilgisi"
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition"
+    />
+
+    <textarea
+      placeholder="İstenen işlem: Stage 1, DSG, DPF/EGR, AdBlue, gizli özellik..."
+      rows={3}
+      className="w-full bg-black border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-lime-400 transition resize-none max-h-[120px]"
+    />
+
+    <a
+      href="https://wa.me/905301331204"
+      target="_blank"
+      className="block w-full bg-lime-400 hover:bg-lime-300 text-black text-center font-black py-5 rounded-2xl transition duration-300 shadow-[0_0_30px_rgba(163,230,53,0.35)]"
+    >
+      WhatsApp Üzerinden Gönder
+    </a>
+
+  </div>
+
+</div>
 {/* OVERLAY */}
 <div
-  onClick={() => setShowAppointment(false)}
+        onClick={() => {
+          setShowAppointment(false)
+          setShowMobileMenu(false)
+          setShowAnalysis(false)
+        }}
   className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[998] transition duration-500 ${
-    showAppointment
+showAppointment || showMobileMenu || showAnalysis
       ? "opacity-100 visible"
       : "opacity-0 invisible"
   }`}
