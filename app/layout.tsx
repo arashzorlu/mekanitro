@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Mekanitro Chiptuning",
-  description: "Stage Yazılım, DSG Optimizasyonu ve Performance Çözümleri",
-  
+  description:
+    "Stage Yazılım, DSG Optimizasyonu, DPF EGR ve AdBlue çözümleri",
+
   icons: {
     icon: "/icon.png",
   },
