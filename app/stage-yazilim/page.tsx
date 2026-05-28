@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import Image from "next/image"
 export const metadata = {
@@ -313,7 +314,7 @@ export const metadata = {
           </section>
   
         </div>
-  
+        <Footer />
       </main>
     )
   }

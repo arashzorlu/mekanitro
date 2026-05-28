@@ -1,6 +1,6 @@
+import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import Image from "next/image"
-
 export const metadata = {
   title: "7/24 Acil Mobil Destek | Mekanitro",
   description:
@@ -230,7 +230,7 @@ export default function MobilDestekPage() {
         </section>
 
       </div>
-
+      <Footer />
     </main>
   )
 }

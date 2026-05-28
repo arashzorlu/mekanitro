@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import Image from "next/image"
 
@@ -287,7 +288,7 @@ export default function DSGPage() {
         </section>
 
       </div>
-
+      <Footer />
     </main>
   )
 }
