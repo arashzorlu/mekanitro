@@ -1,4 +1,5 @@
 import Script from "next/script"
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -29,9 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="tr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <GoogleTagManager gtmId="GTM-5LGS7W4P" />
 <body className="min-h-full flex flex-col">
 
 <Script
